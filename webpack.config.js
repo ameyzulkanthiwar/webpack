@@ -14,5 +14,5 @@ const path = require('path');
 
 // Following configration will be get used by the webpack
 module.exports = {
-    entery
+    
 }
