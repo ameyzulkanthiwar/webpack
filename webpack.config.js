@@ -13,15 +13,16 @@
 const path = require('path');
 
 // Following configration will be get used by the webpack
+    
 module.exports = {
-    /** 
-     * Bacically it help us to build the config for perticular mode
-     * Mode: production mode, devlopment mode
-     * devlopment mode is kind of verbose there is lot of comments
-     * and we care about the performance and devlopment speed and
-     * on the other hand production mode is squize in size and 
-     * space of js files
-     * */
 
-    mode: "devlopment"
+    mode: 'development',
+    entry: {
+        myfile :'./src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      filename:'js/[name].[contenthash].build.js',
+   },
+
 }
