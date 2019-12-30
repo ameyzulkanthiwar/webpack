@@ -255,3 +255,44 @@ webpack-dev-server does not use the build genrated by the build command, it do i
 writeToDisk: true
 ```
 
+# Hot Reloading
+
+With out refrashing it updated the data on the screen.
+
+To achive hot reloading we need to add one plugin and hot attribute in the config
+```
+const path = require('path');
+const webpack = require('webpack') //<<<< added
+    
+module.exports = {
+
+    mode: 'development',
+    entry: {
+        myfile :'./src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename:'js/[name].js', 
+      publicPath: '/assets/',
+   },
+   devServer:{
+       port: 1234,
+       contentBase: path.join(__dirname, 'dist'),
+       writeToDisk: true,
+       hot: true //<<<< added
+   },
+   plugins: [new webpack.HotModuleReplacementPlugin()] //<<<< added
+}
+```
+one more small change rather then importing
+```
+export function writeToScreen(){
+    document.write("Hello World from webpack............!")
+}
+```
+we are importing below code just becouse of this "document.write"
+```
+export function changeH1(text){
+    document.querySelector('h1').innerText = text 
+}
+```
