@@ -85,4 +85,16 @@ module.exports = {
     * content change -> hash change -> hash change then name of the filechange
     * and broweser force to do the work with new file  
    */
+
+   /**
+    * usage of "publicPath"
+    * It is bacically used for web pack to undastand.
+    * Consider we have production app ok and we have file name like
+    * js/1.js (react dom library) , js/2.js (I wrote), js/3.js (node_module)
+    * and this files are having information abot each other like 2.js know
+    * how to and when to load the 1.js and 3.js and this information need to kow 
+    * by the web pack and to know that we need to spacify in the publicPath
+    * so its like webpack know which file to look but where exactly to look that information he get from the
+    * publicPath
+   */
 }

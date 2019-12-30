@@ -22,7 +22,8 @@ module.exports = {
     },
     output: {
       path: path.resolve(__dirname, 'build'),
-      filename:'js/[name].[contenthash].build.js',
+      filename:'js/[name].[contenthash].build.js', // js/1.js (react dom library) , js/2.js (I wrote), js/3.js (node_module)
+      publicPath: '/assets/' //https://server.com/assets/js/1.js
    },
 
 }
