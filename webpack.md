@@ -185,3 +185,73 @@ Following code will compatable withh all "umd" which means
 libraryTarget:'umd'
 library: 'Library_Name'
 ```
+This is how we will write the config then
+```
+module.exports = {
+
+    mode: 'development',
+    entry: {
+        myfile :'./src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      filename:'js/[name].[contenthash].build.js',
+      publicPath: '/assets/',
+      libraryTarget:'umd'
+      library: 'Library_Name'
+   }
+
+}
+```
+
+# Webpack devlopment server
+We do not need to do anything we get the default server to use in the weback install webpack-dev-server to downlode use the following command
+```
+npm i webpack-dev-server --save-dev
+```
+#### What will it do?
+
+Behind the seen it create the server for us and builds the webpack, monitor our files, relode the page even hot module reloding if we want.
+
+NOTE: with out dev server if we want to run the projwct then we need to build 1st and the use the file protocol [File Protocal means you put the path of file in a browser to run that code ],
+
+* DevServer Configration 
+* Port: it will run the dev server on the given or mention port
+* ContentBase : it will use the file which will serve by build which 
+* might not be ganrated at the time of writing this code
+```
+   devServer:{
+       port: 1234,
+       contentBase: path.join(__dirname, 'dist')
+   }
+```
+### Main config will look like this
+```
+module.exports = {
+    mode: 'development',
+    entry: {
+        myfile :'./src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename:'js/[name].js', 
+      publicPath: '/assets/',
+   },
+   devServer:{
+       port: 1234,
+       contentBase: path.join(__dirname, 'dist')
+   }
+}
+```
+
+At this point I did make some other changes too
+```
+<script src='/assets/js/myfile.js'></script>
+```
+NOTE: With this configration if change anything in the file it will appare on the screen, I do       not need to kill the process and start again
+
+webpack-dev-server does not use the build genrated by the build command, it do its own process and save it into memory(RAM) and use it from there but if we want to see what webpack is doing behind the hood and what it stoiring into the memory(RAM) then write following line of code  and it will genrate the file in the folder
+```
+writeToDisk: true
+```
+

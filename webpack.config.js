@@ -21,11 +21,20 @@ module.exports = {
         myfile :'./src/index.js'
     },
     output: {
-      path: path.resolve(__dirname, 'build'),
-      filename:'js/[name].[contenthash].build.js',
+      path: path.resolve(__dirname, 'dist'),
+      filename:'js/[name].js', 
       publicPath: '/assets/',
-      libraryTarget: "uad",
-      library: 'myLib'
    },
 
+   /**
+    * DevServer Configration 
+    * Port: it will run the dev server on the given or mention port
+    * ContentBase : it will use the file which will serve by build which 
+    * might not be ganrated at the time of writing this code
+   */
+   devServer:{
+       port: 1234,
+       contentBase: path.join(__dirname, 'dist'),
+       writeToDisk: true
+   }
 }
