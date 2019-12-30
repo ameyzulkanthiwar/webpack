@@ -1,4 +1,6 @@
 # Webpack config details
+    NOTE: To run the prevew in vs code "ctrl + shilft + V"
+
 How does webpoack know to run this file?
  * Answer: now we can see that this file has spacial name which is "webpack.config.js" so when we run the the command "npm run build" then it will look for this file
  * NOTE: if we want to chane the name of this file I mean
@@ -153,3 +155,33 @@ src="/img/picture.jpg" Re-writes ➡ src="/assets/img/picture.jpg"
 Accessed by: (http://server/assets/img/picture.jpg)
 
 MORE: https://github.com/webpack/docs/wiki/configuration#outputpublicpath
+
+# Library Target
+* Webpack allowes you to eco out certan type of export import
+* Like back in the day we need to mantion script tag
+* Now a days we use ES6 import, export syntax
+* in commonJs we use require and module.export
+* we need tell libraryTarget, what kind of code we want webpack to create for our pourpose
+
+we can give differnet values to libraryTarget
+```
+libraryTarget:'var',
+library: 'Library_Name'
+```
+or
+```
+libraryTarget:'commonjs'
+library: 'Library_Name'
+```
+or
+```
+libraryTarget:'amd'
+library: 'Library_Name'
+```
+or
+Following code will compatable withh all "umd" which means 
+"Universal Module Definatioin"
+```
+libraryTarget:'umd'
+library: 'Library_Name'
+```
