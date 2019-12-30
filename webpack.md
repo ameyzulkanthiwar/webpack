@@ -296,3 +296,62 @@ export function changeH1(text){
     document.querySelector('h1').innerText = text 
 }
 ```
+
+# Loaders
+
+In webpack we can import css file into Java Script files, SCSS, Handle Bar, LESS
+
+    Webpack loaders are javascript library which help you to import all this stuff
+
+We use the rule config to add loader. It is an array of an object
+
+Rule contain atlist 2 properties
+
+* test 
+* use
+
+test: check wather file contains the png or jpg 
+
+I think becically it look for the condition means regular expration
+
+use: we need to notify webpack which loader need to use wen its jpg or png file (test condition)
+
+So here when ever we are importing jpg or png webpack will check rule for it wather 
+we have added the rule for it or not
+
+```
+const path = require('path');
+    
+module.exports = {
+
+    mode: 'development',
+    entry: {
+        myfile :'./src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename:'js/[name].js', 
+      publicPath: '/assets/',
+   },
+   devServer:{
+       port: 1234,
+       contentBase: path.join(__dirname, 'dist'),
+       writeToDisk: true,
+   },
+   module:{
+      rules: [
+        {
+            test: /\.(png|jpg)$/,
+            use: [
+                'file-loader'
+            ]
+
+        }
+      ] 
+   }
+}
+```
+NOTE: Make suer we have install the loader that we are adding in the use attibute or may say config for above code we we arr adding the "file-loader"
+```
+npm i file-loader --save-dev
+```
