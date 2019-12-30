@@ -16,7 +16,7 @@ module.exports = {
        port: 1234,
        contentBase: path.join(__dirname, 'dist'),
        writeToDisk: true,
-       hot: true
+       //hot: true // it is creating some files that's the reson for commenting out this feature
    },
    plugins: [new webpack.HotModuleReplacementPlugin()]
 }

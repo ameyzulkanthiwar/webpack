@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "b09128161b25d90b3a53";
+/******/ 	var hotCurrentHash = "a0dce23331fd478a4889";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1197,7 +1197,7 @@ eval("var logLevel = \"info\";\n\nfunction dummy() {}\n\nfunction shouldLog(leve
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test */ \"./src/test.js\");\n// Entry point for athe webpack\r\n// import {writeToScreen} from './test'\r\n\r\n// writeToScreen()\r\n\r\n\r\n\r\nObject(_test__WEBPACK_IMPORTED_MODULE_0__[\"changeH1\"])(\"See it hot reload...!!\")\r\n\r\nif(module && module.hot) module.hot.accept();\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ \"./node_modules/webpack/buildin/harmony-module.js\")(module)))\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test */ \"./src/test.js\");\n/**\r\n * Entry point for athe webpack\r\n*/ \r\n\r\n// import {writeToScreen} from './test'\r\n\r\n// writeToScreen()\r\n\r\n\r\n\r\nObject(_test__WEBPACK_IMPORTED_MODULE_0__[\"changeH1\"])(\"See it hot reload...!!\")\r\n\r\nif(module && module.hot) module.hot.accept();\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ \"./node_modules/webpack/buildin/harmony-module.js\")(module)))\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
