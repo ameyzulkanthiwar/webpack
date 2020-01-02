@@ -38,17 +38,11 @@ module.exports = {
 # Output config
 
 * Output configration in the webpack
-* Now what it is output config so with till this point what configration is done with
-* that if we run "npm run build" command then we can see that 
-* in the dist folder it produce index.html and main.js file 
-* and we do not have control over the name of the file and 
-* where it is created.  
+* Now what is output config? so with till this point what configration is done is that if we run "npm run build" command then we can see that 
+* in the dist folder it produce main.js file and we do not have control over the name of the file and where it is created.  
 * So we control this using output configration
-    * 1st thing We need to say the file name we want And at 
-    * this point if run command we can see that build.js is created
-    * in the dist folder
-    * "path" decides the location for file and below 
-    * build is name of the folder
+    * 1st thing We need to say the file name we want And at this point if run command we can see that build.js is created in the dist/js folder
+    * "path" decides the location for file and below build is name of the folder
     * "filename" decide the name of the file
        
 ```
@@ -63,27 +57,21 @@ module.exports = {
 ```
 ---
 # Plceholder Config
-    Thereare different type of place holder
+    There are different type of place holder
     [hash] 
     [chunckhash]
     [name] 
     [id]
     [query] 
     [contenthash]
-* NOTE:
-    * rather the hard coding the build file name we can give the
-    * hash value or something else with is genrated whenever we run the 
-    * build command
-* so in the abou output config we can see that we put the [name] 
-* and [constenthash] we are using the name hash place holder
-* and content hash placeholder now for this input this 
-* output build is genrated like myfile.build.js liek this 
+* NOTE: Rather the hard coding the build file name we can give the hash value or something else with is genrated whenever we run the build command
+* so in the above output config we can see that we put the [name] and [constenthash] we are using the name hash place holder and content hash placeholder now for this input this output build is genrated like myfile.build.js liek this 
 * NOTE: Look at the entery point name and outpust carefull
 * contenthash is usefull at the time of cash busting 
-* consider we are in the production and we make the changes to teh 
+* consider we are in the production and we make the changes to the 
 * js file and we want to prapogate this to output at this time by 
 * rather creating the by file name we can create build using the contenthash name
-* content change -> hash change -> hash change then name of the filechange and broweser force to do the work with new file  
+* content change -> hash change -> hash change then name of the file change and broweser force to do the work with new file  
 
 ```
 module.exports = {
@@ -103,11 +91,13 @@ module.exports = {
 * usage of "publicPath"
 * It is bacically used for web pack to undastand.
 * Consider we have production app ok and we have file name like
-* js/1.js (react dom library) , js/2.js (I wrote), js/3.js (node_module)
-* and this files are having information abot each other like 2.js know
-* how to and when to load the 1.js and 3.js and this information need to kow 
+    * js/1.js (react dom library) 
+    * js/2.js (I wrote) 
+    * js/3.js (node_module)
+* and this files are having information about each other like 2.js know
+* how to and when to load the 1.js and 3.js and this information need to know 
 * by the web pack and to know that we need to spacify in the publicPath
-* so its like webpack know which file to look but where exactly to look that information he get from the publicPath
+* so it's like webpack know which file to look but where exactly to look that information he get from the publicPath
 ```
 module.exports = {
 
@@ -123,21 +113,28 @@ module.exports = {
       // js/2.js (I wrote), 
       // js/3.js (node_module)
       
-      publicPath: '/assets/' //https://server.com/assets/js/1.js
+      publicPath: '/assets/'
+      // ex. PublicPath
+      // localhost:3000
+      // https://Name_Of_website
+      // https://server.com/assets/js/1.js
    },
 
 }
 ```
 Better Explan here:
 
-### output.path
+## output.path
+---
 Local disk directory to store all your output files (Absolute path).
 
 Example: path.join(__dirname, "build/")
 
 Webpack will output everything into localdisk/path-to-your-project/build/
 
-### output.publicPath
+
+## output.publicPath
+---
 Where you uploaded your bundled files. (Relative to server root)
 
 * Example: /assets/
@@ -354,4 +351,117 @@ module.exports = {
 NOTE: Make suer we have install the loader that we are adding in the use attibute or may say config for above code we we arr adding the "file-loader"
 ```
 npm i file-loader --save-dev
+```
+
+# CSS Loader
+
+like from above you we can see how to tell webpack what to do if we want to use the css import or css file
+
+In use attribute we need to pass two loaders 
+    
+    'style-loader' and 'css-loader' 
+
+style-loader:  style loader will put css file into the html file
+
+css-loader: css loader will create css file
+
+```
+module:{
+      rules: [
+        {
+            test: /\.(png|jpg)$/,
+            use: [
+                'file-loader'
+            ]
+        },
+        {
+            test: /\.css$/i,
+            loader: ['style-loader', 'css-loader'],
+        },
+      ] 
+   }
+```
+
+    NOTE: sequence of the loader matters here in above example if we write 'css-loader' 1st and then style loader then it will break becouse there work is inter dependant like 'style-loader' will use the work of 'css-loader'
+
+
+# USE SCSS In the project
+
+code for the scss use in project is below
+```
+{
+    test: /\.scss$/i,
+    use: ['style-loader', 'css-loader', 'sass-loader'],
+}
+```
+    Note: Here we are install 'sass-loader' not a 'scss-loader' along with sass-loader we also need to install 'node-sass' for some reason. if we no not intall then it will bitch about it.
+
+```
+npm i sass-loader node-sass --save-dev
+```
+
+# Babel
+
+all the feature that you want to use from the javascript we need to mention in the plugins.
+In short we need to know the name of all the feature that we are using, because  we need to add those feature in the plugin 
+
+while installing look for proper version
+
+sequence of intallation does not matter.
+
+even thought in package.json it showes "^" this sign which mean grater than this verstion we need to make suer we are adding proper version
+
+NOW LETS TALK ABOUT THE BABEL CONFIGRATION
+
+```
+{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: {
+        loader: 'babel-loader',
+        options:{
+            presets: ['@babel/env'],
+            plugins: ['transform-class-properties']
+        }
+    }
+}
+```
+
+We have use the above rule for the bable config
+Now:
+
+exclude: gives a ability to not involve perticular path or folder for the considration
+in our case we excluding node modules file
+
+loader : as we know we mention wat type of loaders we want to use on the perticular file
+
+options: it helps to extend the rule for teh perticular loader in our case we are extending the babel-loader
+
+    Babel preset-env is a preset that compiles down to a minimum of ES5 ( preset-es2015 ), but can also take a browser or runtime version and determine which plugins are needed for that specific environment! This avoids the problem of targeting a spec! It also avoids unnecessarily compiling code that does not need to be.
+
+what is presets: https://stackoverflow.com/questions/46684753/what-is-a-babel-preset-what-does-stage-mean
+
+Technically presets are collections of plugins (as Quentin says)
+
+The usecase is the support of particular language features.
+
+Presets are sharable .babelrc configs or simply an array of babel plugins.
+
+plugins: Mention in the next set
+
+this are the pacages we have used in the project
+```
+"@babel/core": "^7.0.0-beta.40",
+"@babel/preset-env": "^7.7.7",
+"babel-core": "^6.26.3",
+"babel-loader": "^8.0.6",
+"babel-plugin-transform-class-properties": "^6.24.1",
+"babel-preset-env": "^1.7.0",
+```
+but below packages will also works perfectly fine
+```
+"@babel/core": "^7.7.7",
+"@babel/preset-env": "^7.7.7",
+"babel-loader": "^8.0.6",
+"babel-plugin-transform-class-properties": "^6.24.1",
 ```
