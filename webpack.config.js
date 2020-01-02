@@ -2,7 +2,10 @@ const path = require('path');
 
 // Following import is used for the minification
 const TerserPlugin = require('terser-webpack-plugin')
-    
+
+// Following import is used creating differnt buld file for css code 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 module.exports = {
 
     mode: 'development',
@@ -36,11 +39,11 @@ module.exports = {
         },
         {
             test: /\.css$/i,
-            use: ['style-loader', 'css-loader'],
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
             test: /\.scss$/i,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
         {
             test: /\.js$/,
@@ -56,6 +59,11 @@ module.exports = {
       ] 
    }, 
    plugins: [
-       new TerserPlugin()
+       new TerserPlugin(),
+       new MiniCssExtractPlugin({
+        path: path.resolve(__dirname, 'dist'),
+        filename:'css/[name].css', 
+        publicPath: '/assets/',
+       })
    ]
 }

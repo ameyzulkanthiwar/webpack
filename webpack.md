@@ -500,3 +500,86 @@ and plugin code is
     ]
 
 # Extract css into a seperate file in bundle
+
+This seperating css code in theseprate file helps us in the production.
+
+HOw exactly it hepls:
+
+ok if we make different bundle file for different code like for js diferent for css different and for HTML different then there will be 3 file of different size and all file will load parallely like rather then downloding 10kb in one we are downloding 2kb 5kb and 3 kb files in parallel . In this second case we will able to downlode the file quickliy. (this is jsut a example to make undastand the consept)
+
+    npm install mini-css-extract-plugin --save-dev
+
+```
+const path = require('path');
+
+// Following import is used for the minification
+const TerserPlugin = require('terser-webpack-plugin')
+
+// FOLLOWING IMPORT IS FOR SEPRATION
+// Following import is used creating differnt buld file for css code 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+module.exports = {
+
+    mode: 'development',
+    entry: {
+        myfile :'./src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename:'js/[name].js', 
+      publicPath: '/assets/',
+   },
+   devServer:{
+       port: 1234,
+       contentBase: path.join(__dirname, 'dist'),
+       writeToDisk: true,
+   },
+   module:{
+      rules: [
+        {
+            test: /\.(png|jpg)$/,
+            use: [
+                'file-loader'
+            ]
+        },
+        {
+            test: /\.css$/i,
+            // NOTE: WE DO CHAGE THE STYLE-LOADER TO MiniCssExtractPlugin.loader 
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+            test: /\.scss$/i,
+            // NOTE: WE DO CHAGE THE STYLE-LOADER TO MiniCssExtractPlugin.loader 
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        },
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options:{
+                    presets: ['@babel/env'],
+                    plugins: ['transform-class-properties']
+                }
+            }
+        }
+      ] 
+   }, 
+   plugins: [
+       new TerserPlugin(),
+       //FOLLOWING CODE IS FOR SEPERATION
+       new MiniCssExtractPlugin({
+        path: path.resolve(__dirname, 'dist'),
+        filename:'css/[name].css', 
+        publicPath: '/assets/',
+       })
+   ]
+}
+```
+
+Make suer to put the bundle into the html file for css other wise we will not able too see the styling 
+
+In our case we put the link in head section of the html
+
+    <link rel='stylesheet' href='/assets/css/myfile.css'>
