@@ -3,5 +3,8 @@ export function writeToScreen(){
 }
 
 export function changeH1(text){
-    document.querySelector('h1').innerText = text 
+    const h = document.createElement('h1')
+    h.innerHTML = text 
+    const bod =document.querySelector('body')
+    bod.appendChild(h)
 }

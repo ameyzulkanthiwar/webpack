@@ -545,12 +545,16 @@ module.exports = {
         },
         {
             test: /\.css$/i,
+            
             // NOTE: WE DO CHAGE THE STYLE-LOADER TO MiniCssExtractPlugin.loader 
+            
             use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
             test: /\.scss$/i,
+            
             // NOTE: WE DO CHAGE THE STYLE-LOADER TO MiniCssExtractPlugin.loader 
+            
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
         {
@@ -568,7 +572,9 @@ module.exports = {
    }, 
    plugins: [
        new TerserPlugin(),
+      
        //FOLLOWING CODE IS FOR SEPERATION
+
        new MiniCssExtractPlugin({
         path: path.resolve(__dirname, 'dist'),
         filename:'css/[name].css', 
@@ -583,3 +589,51 @@ Make suer to put the bundle into the html file for css other wise we will not ab
 In our case we put the link in head section of the html
 
     <link rel='stylesheet' href='/assets/css/myfile.css'>
+
+
+# Browser Cashing
+
+The cache is a software or hardware component that is used to temporarily store values for faster future access. 
+
+The browser cache is a small database of files that contains downloaded web page resources, such as images, videos, CSS, Javascript, and so on.
+
+For more Information: https://pressidium.com/blog/2017/browser-cache-work/
+
+    we use the contenthash placeholder for changing file name on every build.
+
+# Genrate HTML File automatically
+
+'htmlWebpackPlugin' plugin is used for genrating automatic html in the bundle
+
+```
+npm install html-webpack-plugin --save-dev
+```
+1st import and then use the instance in the plugin array
+
+code for mporting html file
+
+    ..
+    ..
+    const htmlWebpackPlugin = require('html-webpack-plugin')
+    ..
+    ..
+
+    ..
+    plugins:[
+        ..
+        new htmlWebpackPlugin()
+    ]
+
+Link to get more information about the html webpack plugins https://github.com/jantimon/html-webpack-plugin#options
+
+
+# cleanup at the time of buld proceess 
+
+'webpack-cleanup-plugin' plugin we use to do the clean up at the time of build process
+
+```
+npm install --save-dev webpack-cleanup-plugin
+```
+and then add intsnce of it in the plugin array
+
+    NOTE: it will hep you to clean up the extra files at the time of build process but not at the time when we are running the dev-server
