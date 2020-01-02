@@ -1,5 +1,7 @@
 const path = require('path');
-const webpack = require('webpack')
+
+// Following import is used for the minification
+const TerserPlugin = require('terser-webpack-plugin')
     
 module.exports = {
 
@@ -52,5 +54,8 @@ module.exports = {
             }
         }
       ] 
-   }
+   }, 
+   plugins: [
+       new TerserPlugin()
+   ]
 }

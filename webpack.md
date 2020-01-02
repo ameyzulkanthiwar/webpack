@@ -483,3 +483,20 @@ Plugin can also modified.
     ...
     ...
     etc.
+
+
+# Minification of the webpack bundle
+
+It is important to have the bundle size small so it can get dounlode quick consider if user is using the web site the we wnt it to load quick at that kind of time minification help a lot.
+
+We need to import the 'terser-webpack-plugin' for using the instance and we can use the uglify js to but this one is the new one and Recomended way to do.
+
+    const TerserPlugin = require('terser-webpack-plugin')
+
+and plugin code is 
+
+    plugins: [
+        new TerserPlugin()
+    ]
+
+# Extract css into a seperate file in bundle
