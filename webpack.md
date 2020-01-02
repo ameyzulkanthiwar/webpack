@@ -447,7 +447,7 @@ The usecase is the support of particular language features.
 
 Presets are sharable .babelrc configs or simply an array of babel plugins.
 
-plugins: Mention in the next set
+plugins: Mention in the next set (In a nut shell aits array of all the feature that you want to use for the lunguage or test)
 
 this are the pacages we have used in the project
 ```
@@ -465,3 +465,21 @@ but below packages will also works perfectly fine
 "babel-loader": "^8.0.6",
 "babel-plugin-transform-class-properties": "^6.24.1",
 ```
+
+# Plugins
+
+Plugin are additional javascript library that do everything that loaders "cannot" do
+
+Plugin can also modified.
+
+    ************* IMP ************
+    ******************************
+    When ever we want to import something we use the loader like when we want to import css file we use the css loader we want to scss we use sass loader. So what we do when we need to do something different then the importing we use plugins.
+
+    What we can do with plugins:
+    we can define global veriable for whole project
+    we can minify the content or may say file (space compexcity)
+    we can genrate different file
+    ...
+    ...
+    etc.
