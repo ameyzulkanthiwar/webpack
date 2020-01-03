@@ -24,4 +24,10 @@ const count = 10;
 
 changeH1(count);
 
+if(process.env.NODE_ENV === 'production'){
+   changeH1('Production'); 
+}else if (process.env.NODE_ENV === 'development'){
+    changeH1('Development')
+}
+
 if(module && module.hot) module.hot.accept();

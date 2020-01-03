@@ -685,3 +685,22 @@ and then add intsnce of it in the plugin array
 
     NOTE: it will hep you to clean up the extra files at the time of build process but not at the time when we are running the dev-server
 
+
+# Production VS Development Builds
+
+In the production We alwe eant the bundel to be small and it should work fast
+
+In devlopment we want to see readable code and comments to undastand the code more 
+
+In module exort there is mode attribute which decides the mode of build wather it is development or production but yha we need to set it up
+
+    process.env.NODE_ENV 
+
+this contain the value of the mode and help to decide what to do.
+
+Both the mode handles the error differently.
+
+It is very easy to know the origin of the error in the development mode rather then the production mode. 
+
+Becouse in the devlopment we use the source map meanse we are not minifing the code and code struture is same as writen in a sence but in the production we are minifing it so reduce the size of the code.
+
