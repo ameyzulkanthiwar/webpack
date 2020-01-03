@@ -1,9 +1,11 @@
 const path = require('path');
 
 // Following import is used for the minification
+// We do not need to minify our code in the development mode
 const TerserPlugin = require('terser-webpack-plugin')
 
 // Following import is used creating differnt buld file for css code 
+// We do not need to extract all css in seprate file but we will kep it this time 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // webpack plugin import
@@ -23,7 +25,8 @@ module.exports = {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename:'js/[name].[hash].js', 
+      //Remove the hash placeholder we do not need to handle browser cashing in the devlopment 
+      filename:'js/[name].js', 
       publicPath: '/assets/',
    },
    devServer:{
@@ -31,7 +34,8 @@ module.exports = {
        contentBase: path.join(__dirname, 'dist'),
        writeToDisk: true,
        inline: true,
-    //    hot: true
+       hot: true,
+       compress: true
    },
    module:{
       rules: [
@@ -67,15 +71,15 @@ module.exports = {
       ] 
    }, 
    plugins: [
-       new TerserPlugin(),
+       // We do not need to minify our code in the development
+           new TerserPlugin(),
        new MiniCssExtractPlugin({
         path: path.resolve(__dirname, 'dist'),
-        filename:'css/[name].[hash].css', 
+        //Remove the hash placeholder we do not need to handle browser cashing in the devlopment 
+        filename:'css/[name].css', 
         publicPath: '/assets/',
        }),
-       new WebpackCleanupPlugin({
-        // exclude: ["index.html"],
-       }),
+       new WebpackCleanupPlugin(),
        new htmlWebpackPlugin({
            title:'Webpack setpu',
            template: 'src/index.hbs',

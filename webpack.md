@@ -704,3 +704,28 @@ It is very easy to know the origin of the error in the development mode rather t
 
 Becouse in the devlopment we use the source map meanse we are not minifing the code and code struture is same as writen in a sence but in the production we are minifing it so reduce the size of the code.
 
+    Production and devlopment mode need the different plugins 
+
+    We can crete different config for the production and the developemt mode
+
+    so one like webpack.dev.config.js and another like webpack.production.config.js
+
+    NOTE: Both config are kind of similar but need to make some kind of changes
+
+Here one more thing to notice that we need to make chage in the package.json 
+we need to add the script for bundaling in dev sepratly and bundaling in the prod sepratly
+
+```
+...
+"build-dev": "webpack --config webpack.dev.config.js",
+"build-prod": "webpack --config webpack.production.config.js"
+...
+```
+
+And also we are Running project using webpac-dev-server so we need to do some modification in that script too Which is shown below
+
+```
+"dev": "webpack-dev-server --config webpack.dev.config.js --hot",
+```
+
+NOTE:  STILL NOT FOUND TO SOLVE THE HOT RELODE ISSUE

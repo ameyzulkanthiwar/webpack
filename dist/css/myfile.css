@@ -1,13 +1,14 @@
 .style-class-hello-world-button {
-  font-size: 20px;
+  font-size: 30px;
   padding: auto;
   background-color: red;
   color: green; }
 
 .hello-world-text {
   color: blue;
-  font-size: 50px; }
+  font-size: 15px; }
 
 h1 {
-  color: green; }
+  color: green;
+  font-size: 50px; }
 

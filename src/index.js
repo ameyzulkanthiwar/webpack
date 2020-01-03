@@ -11,7 +11,7 @@ import addImage from './add-image.js'
 import helloWorldButton from './components/hello-world-button/hello-world'
 import heading from './components/heading'
 
-changeH1("See it hot reload....|||...!!"); 
+changeH1("See it hot re......|||...!!"); 
 addImage(); 
 
 const Button = new helloWorldButton()
