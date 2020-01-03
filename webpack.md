@@ -627,6 +627,53 @@ code for mporting html file
 Link to get more information about the html webpack plugins https://github.com/jantimon/html-webpack-plugin#options
 
 
+Here if you want to custoomize the automated genrated html then we can use the template 
+
+For example In the project I am using the handle bar template
+
+To customize html 1st we need to create the html file with template extention her in the project we are usng the 'index.hbs' now after that becose we are using different file extention we need to use the loader we need to tell what to do when you see that type of extention I mean what to do for '.hbs' extention
+
+so we need to install handlebars-loader
+
+    npm install --save-dev handlebars-loader
+
+Then add the new rule in the module 
+
+    {
+        test: /\.hbs$/,
+        use: ['handlebars-loader']
+    }
+
+now in the plugne we can add object.
+
+    new htmlWebpackPlugin({
+           title:'Webpack setpu',
+           template: 'src/index.hbs',
+           description: "Adding note how to set up webpack config"
+       }),
+
+And now use the attribute mention here in the template the attribute that I am talking about are 'title' and 'description'
+
+index.hbs
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+     <--! look at this line-->
+    <title>{{htmlWebpackPlugin.options.title}}</title>
+
+    <--! look at this line-->
+    <meta 
+        name='discription' 
+        content='{{htmlWebpackPlugin.options.description}}'
+    > 
+  <body>
+  </body>
+</html>
+```
+
+
 # cleanup at the time of buld proceess 
 
 'webpack-cleanup-plugin' plugin we use to do the clean up at the time of build process
@@ -637,3 +684,4 @@ npm install --save-dev webpack-cleanup-plugin
 and then add intsnce of it in the plugin array
 
     NOTE: it will hep you to clean up the extra files at the time of build process but not at the time when we are running the dev-server
+

@@ -59,6 +59,10 @@ module.exports = {
                     plugins: ['transform-class-properties']
                 }
             }
+        },
+        {
+            test: /\.hbs$/,
+            use: ['handlebars-loader']
         }
       ] 
    }, 
@@ -73,7 +77,9 @@ module.exports = {
         // exclude: ["index.html"],
        }),
        new htmlWebpackPlugin({
-           title:'Webpack setpu'
+           title:'Webpack setpu',
+           template: 'src/index.hbs',
+           description: "Adding note how to set up webpack config"
        }),
     //    new webpack.HotModuleReplacementPlugin()
    ]
